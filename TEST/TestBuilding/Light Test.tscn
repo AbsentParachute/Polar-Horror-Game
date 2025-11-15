@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwn2whxuv5c8u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2a4an"]
+resource_name = "Grid"
+cull_mode = 2
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_egds0"]
+_surfaces = [{
+"aabb": AABB(-3.8147e-06, -1.4, -1.5, 1e-05, 2.8, 3),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "Grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(79, 195, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 79, 195, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fi5i4"]
+resource_name = "Light Test_Plane_2778"
+_surfaces = [{
+"aabb": AABB(-3.8147e-06, -1.4, -1.5, 1e-05, 2.8, 3),
+"attribute_data": PackedByteArray(0, 0, 124, 248, 255, 255, 253, 191, 255, 255, 124, 248, 0, 0, 253, 191),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_2a4an"),
+"name": "Grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(79, 195, 255, 255, 255, 255, 84, 213, 0, 0, 0, 0, 0, 0, 84, 213, 79, 195, 0, 0, 255, 255, 84, 213, 0, 0, 255, 255, 0, 0, 84, 213, 170, 170, 85, 85, 170, 170, 85, 85, 170, 170, 85, 85, 170, 170, 84, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_egds0")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qq75y"]
+_surfaces = [{
+"aabb": AABB(-3.8147e-06, -1.4, -1.5, 1e-05, 2.8, 3),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "Grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(79, 195, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 79, 195, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_464y2"]
+resource_name = "Light Test_Plane_2779"
+_surfaces = [{
+"aabb": AABB(-3.8147e-06, -1.4, -1.5, 1e-05, 2.8, 3),
+"attribute_data": PackedByteArray(0, 0, 124, 248, 255, 255, 253, 191, 255, 255, 124, 248, 0, 0, 253, 191),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_2a4an"),
+"name": "Grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(79, 195, 255, 255, 255, 255, 84, 213, 0, 0, 0, 0, 0, 0, 84, 213, 79, 195, 0, 0, 255, 255, 84, 213, 0, 0, 255, 255, 0, 0, 84, 213, 170, 170, 85, 85, 170, 170, 85, 85, 170, 170, 85, 85, 170, 170, 84, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qq75y")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_otc1j"]
+_surfaces = [{
+"aabb": AABB(-3.8147e-06, -1.4, -1.5, 1e-05, 2.8, 3),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "Grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(79, 195, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 79, 195, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_c2dgl"]
+resource_name = "Light Test_Plane_2780"
+_surfaces = [{
+"aabb": AABB(-3.8147e-06, -1.4, -1.5, 1e-05, 2.8, 3),
+"attribute_data": PackedByteArray(0, 0, 124, 248, 255, 255, 253, 191, 255, 255, 124, 248, 0, 0, 253, 191),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_2a4an"),
+"name": "Grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(79, 195, 255, 255, 255, 255, 84, 213, 0, 0, 0, 0, 0, 0, 84, 213, 79, 195, 0, 0, 255, 255, 84, 213, 0, 0, 255, 255, 0, 0, 84, 213, 170, 170, 85, 85, 170, 170, 85, 85, 170, 170, 85, 85, 170, 170, 84, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_otc1j")
+
+[node name="Light Test" type="Node3D"]
+
+[node name="Wall_1m_442" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_fi5i4")
+skeleton = NodePath("")
+
+[node name="Wall_1m_444" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_464y2")
+skeleton = NodePath("")
+
+[node name="Wall_1m_445" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_c2dgl")
+skeleton = NodePath("")

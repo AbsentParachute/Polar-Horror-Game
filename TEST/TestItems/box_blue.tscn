@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c28s2qcibxm14"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mosfw"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wiy3h"]
+albedo_color = Color(0, 0, 1, 1)
+
+[node name="BoxBlue" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_mosfw")
+material = SubResource("StandardMaterial3D_wiy3h")

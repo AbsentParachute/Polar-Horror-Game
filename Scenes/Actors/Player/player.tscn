@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=4 uid="uid://chb5hyq4ewbg"]
+
+[ext_resource type="Script" uid="uid://7opc55sx0v0e" path="res://Scenes/Actors/Player/character_controller.gd" id="1_uvnfx"]
+[ext_resource type="Script" uid="uid://drj1l0y31jl1f" path="res://Scenes/Player/Components/coat_component.gd" id="2_a3d8c"]
+[ext_resource type="Script" uid="uid://rshvcoo5kejg" path="res://Scenes/Player/Components/warmth_component.gd" id="3_xpcdj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a3d8c"]
+radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdn4b"]
+resource_name = "Material"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6gmxy"]
+_surfaces = [{
+"aabb": AABB(-0.25, -1, -1, 0.5, 2, 2),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAwAAAAIAAwAEAAAAAgAFAAMABQAEAAMABgAAAAQABQAGAAQABwAGAAUAAgAHAAUACAAAAAYABwAIAAYAAAAIAAkAAAAJAAEABwAKAAgACQAIAAoAAgALAAcABwALAAoAAQALAAIACQAKAAwADAAKAAsADQABAAkACQAMAA0ADQAOAAEADAALAA8ADQAMAA8ACwABAA8ADQAPAA4ADwABAA4A"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("/////wAAAAAAAP////8AAAAA//8AAAAAAAAAAAAAAAD//wAAAAAAAAAAAADwJAAA//8AAPAkAAAAAA7b8CQAAP//DtvwJAAA////////AAD//w7bDtsAAAAADtsO2wAA//8AAA7bAAD//wAA//8AAAAAAAD//wAAAAAAAA7bAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xpcdj"]
+resource_name = "hoodtest_Cube"
+_surfaces = [{
+"aabb": AABB(-0.25, -1, -1, 0.5, 2, 2),
+"attribute_data": PackedByteArray("/5//f//f/z//3/9//5//P/9f/z//nwAA/5//P/9fAAD/X8L2/5////9f///DlsL2/5//v8OWO8n/XzvJ/1//v/9f/z//HztJ/x//P/9fO0n/H8N2/1//f/8f/3//X8N2/1/Ddv+f/3//X/9/w5bDdv+f/z/DljtJ/187Sf9f/z//X/+//5//f/+f/7//X/9/nsX/f1+6/z9fuv9/nsX/P/5unyX/n2Aa/m5gGv+fnyX/n56l/m5fmv5unqX/n1+a"),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAJAAgACQALAAwADAALAA0ADAANAA4ADAAOAA8AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGwAZABgAGQAbABwAHAAbAB0AHAAdAB4AHAAeAB8AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0A"),
+"material": SubResource("StandardMaterial3D_pdn4b"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("/////wAA//8AAP///////wAA//8AAP///////////////wAA////vwAA//////+//////////78AAAAA////vwAAAAAO21TVAAD/////VNUAAAAA//9U1QAADtsO21TVAAD//wAAVNUAAA7b8CRU1QAAAADwJFTVAAAAAAAAVNX//wAA////vwAAAAAO2/+/AAAAAP///7///wAADtv/vwAAAADwJP+///8AAAAA/78AAAAAAAD/v///AADwJP+///8AAPAkVNX/////AABU1f//AAAAAFTV//8O2/AkVNX///////9U1f//DtsO21TV//8AAA7bVNX//wAA//9U1QAAAAAAAP///////wAA//8AAP//AAD/////AAAAAP//AAAO2/AkAAD//w7bDtsAAP//DtvwJAAAAAAO2w7bAAD//wAADtsAAAAADtsO2wAAAAAAAA7bAAD//w7bDtsAAAAADtvwJP8///8AAPAk/z8AAAAA8CT/P///DtvwJP8//3//v/9//7//f/+//3//v/////////////////////9U1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1QAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/qiqqKqoqqiqqKqoqqiqqKqoqqiqqKqoqqiqqKqoqqir/v/+//7//v/+//7//v/+//3//P/9//z//f/8//3//P/+//7//v/+//7//v/+//7//////////////////////")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6gmxy")
+
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["PLAYER"]]
+script = ExtResource("1_uvnfx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_a3d8c")
+
+[node name="Head" type="Marker3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.761284, 0, 0.613585, 0)
+keep_aspect = 0
+
+[node name="CoatMesh" type="MeshInstance3D" parent="Head/Camera"]
+transform = Transform3D(-1.45788e-08, 0, 0.370475, 0, 0.279826, 0, -0.333524, 0, -1.6194e-08, 0.00246406, 0.0308084, -0.421943)
+visible = false
+mesh = SubResource("ArrayMesh_xpcdj")
+skeleton = NodePath("")
+
+[node name="Hand" type="Node3D" parent="Head"]
+
+[node name="Components" type="Node" parent="."]
+
+[node name="CoatComponent" type="Node" parent="Components"]
+script = ExtResource("2_a3d8c")
+
+[node name="WarmthComponent" type="Node" parent="Components"]
+script = ExtResource("3_xpcdj")
+
+[node name="SFXPool" type="Node" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SFXPool"]
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="SFXPool"]
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="SFXPool"]

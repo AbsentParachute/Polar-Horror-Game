@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://d1bnd6jxo6gxc"]
+
+[ext_resource type="PackedScene" uid="uid://c28s2qcibxm14" path="res://TEST/TestItems/box_blue.tscn" id="1_aa78y"]
+[ext_resource type="Script" uid="uid://pp142victhfa" path="res://Assets/Items/item_data.gd" id="1_xel8r"]
+
+[resource]
+script = ExtResource("1_xel8r")
+id = "Test1"
+display_name = "Blue Box"
+description = "A blue box with magical powers."
+display_scene = ExtResource("1_aa78y")
+metadata/_custom_type_script = "uid://pp142victhfa"

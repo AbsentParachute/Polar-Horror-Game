@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://byrv06xn1x8h7"]
+
+[node name="Main" type="Node"]
+
+[node name="Game" type="Node" parent="."]
+
+[node name="World" type="Node3D" parent="Game"]
+
+[node name="LevelRoot" type="Node3D" parent="Game/World"]
+
+[node name="Actors" type="Node3D" parent="Game/World"]
+
+[node name="SceneManagers" type="Node" parent="Game/World"]
+
+[node name="UI" type="Node" parent="."]

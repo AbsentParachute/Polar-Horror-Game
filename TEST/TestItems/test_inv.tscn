@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dydlk8um0kt5u"]
+
+[ext_resource type="Script" uid="uid://crtxrvwtrgr0" path="res://TEST/TestItems/test_inv_controller.gd" id="1_2kmic"]
+[ext_resource type="PackedScene" uid="uid://bp8rfklhar2f4" path="res://UI/inventory_overlay.tscn" id="2_jdyiw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kmic"]
+sky_top_color = Color(0.810331, 1.44392e-07, 0.430908, 1)
+sky_horizon_color = Color(0.526026, 0.235223, 0.356407, 1)
+ground_bottom_color = Color(0.352879, 0, 0.0538266, 1)
+ground_horizon_color = Color(0.526026, 0.235223, 0.356407, 1)
+
+[sub_resource type="Sky" id="Sky_jdyiw"]
+sky_material = SubResource("ProceduralSkyMaterial_2kmic")
+
+[sub_resource type="Environment" id="Environment_q1pnh"]
+background_mode = 2
+sky = SubResource("Sky_jdyiw")
+reflected_light_source = 1
+tonemap_mode = 2
+
+[node name="Node" type="Node"]
+script = ExtResource("1_2kmic")
+
+[node name="InventoryOverlay" parent="." instance=ExtResource("2_jdyiw")]
+
+[node name="SubViewportContainer" parent="InventoryOverlay/InventoryRoot" index="0"]
+stretch = false
+
+[node name="InventoryCarousel" parent="InventoryOverlay/InventoryRoot/SubViewportContainer/SubViewport" index="0"]
+x_offset = 2.0
+selected_z = 1.0
+
+[node name="DELETELIGHT" type="DirectionalLight3D" parent="InventoryOverlay/InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel" index="0"]
+transform = Transform3D(0.960635, -0.240594, 0.138906, 0.141147, 0.853335, 0.501894, -0.239286, -0.462531, 0.853702, -0.147005, 1.56876, 2.89249)
+shadow_enabled = true
+
+[node name="InventoryCam" parent="InventoryOverlay/InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="DELTEDEENVI" type="WorldEnvironment" parent="InventoryOverlay/InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel" index="3"]
+environment = SubResource("Environment_q1pnh")
+
+[editable path="InventoryOverlay"]

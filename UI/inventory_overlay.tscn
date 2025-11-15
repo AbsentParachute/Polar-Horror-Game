@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp8rfklhar2f4"]
+
+[ext_resource type="Script" uid="uid://b6d6tkf5yhh1e" path="res://UI/inventory_overlay.gd" id="1_d5tdc"]
+[ext_resource type="Script" uid="uid://rqytcsvx8q33" path="res://UI/inventory_carousel.gd" id="1_gysbe"]
+
+[node name="InventoryOverlay" type="CanvasLayer"]
+
+[node name="InventoryRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d5tdc")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="InventoryRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="InventoryRoot/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="InventoryCarousel" type="Node3D" parent="InventoryRoot/SubViewportContainer/SubViewport"]
+script = ExtResource("1_gysbe")
+
+[node name="InventoryCam" type="Camera3D" parent="InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
+current = true
+
+[node name="ItemsRoot" type="Node3D" parent="InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel"]
+
+[node name="LeftButton" type="Button" parent="InventoryRoot"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_right = 147.0
+grow_vertical = 0
+text = "Left"
+
+[node name="RightButton" type="Button" parent="InventoryRoot"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -120.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Right
+"
+
+[node name="ItemNameLabel" type="Label" parent="InventoryRoot"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.5
+offset_right = 210.5
+offset_bottom = 122.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemDescriptionLabel" type="Label" parent="InventoryRoot"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -357.5
+offset_top = -163.0
+offset_right = 357.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Item Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

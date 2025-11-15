@@ -1,0 +1,2 @@
+class_name Interaction
+extends CollisionObject3D

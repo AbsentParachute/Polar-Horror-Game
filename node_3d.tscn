@@ -1,0 +1,155 @@
+[gd_scene load_steps=19 format=3 uid="uid://ovfdfglfrfjv"]
+
+[ext_resource type="PackedScene" uid="uid://8uycgvno1ol6" path="res://Scenes/Player/player_controller.tscn" id="2_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://cbtbgxtu83f8k" path="res://Scenes/Main/Exposure Area/exposure_area.tscn" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://ct7uvqv4v65qs" path="res://TEST/TestBuilding/Object_TriPlanar_Test.tscn" id="3_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://b5uj0yp2jqawu" path="res://TEST/TestBuilding/TubeTEST.glb" id="4_r3fl7"]
+[ext_resource type="PackedScene" uid="uid://dydlk8um0kt5u" path="res://TEST/TestItems/test_inv.tscn" id="5_jka67"]
+[ext_resource type="PackedScene" uid="uid://d231oqqhj3mee" path="res://TEST/TestBuilding/TextureTest.tscn" id="6_i5arm"]
+[ext_resource type="PackedScene" uid="uid://o55mv3or0028" path="res://TEST/TestGenerator/Generator_Battery_Test.tscn" id="7_6iypd"]
+[ext_resource type="PackedScene" uid="uid://djnlqrq2skdec" path="res://TEST/TestGenerator/Generator_Can_Test.tscn" id="8_tereu"]
+[ext_resource type="PackedScene" uid="uid://damk1mgwus72r" path="res://TEST/TestGenerator/Generator_Filter_Test.tscn" id="9_cdqbm"]
+[ext_resource type="PackedScene" uid="uid://f01hjqah1sfh" path="res://TEST/TestGenerator/Generator_Test.tscn" id="10_imku0"]
+[ext_resource type="PackedScene" uid="uid://bld56i5qxosly" path="res://TEST/TestGenerator/Coolant_Can_Test.tscn" id="11_tereu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0tk4"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_r3fl7"]
+sky_material = SubResource("ProceduralSkyMaterial_a0tk4")
+
+[sub_resource type="Environment" id="Environment_jka67"]
+background_mode = 2
+sky = SubResource("Sky_r3fl7")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_noarx"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a0tk4"]
+gradient = SubResource("Gradient_noarx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noarx"]
+albedo_color = Color(0.223529, 1, 1, 1)
+albedo_texture = SubResource("GradientTexture1D_a0tk4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r3fl7"]
+size = Vector3(2.29822, 0.241455, 1.1212)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jka67")
+
+[node name="ExposureArea" parent="." instance=ExtResource("2_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.71401, 1.03468, -12.0071)
+
+[node name="CollisionShape3D" parent="ExposureArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72749, 2.29443, 10.919)
+
+[node name="PlayerController" parent="." instance=ExtResource("2_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.43763, 12.0448, 3.44439)
+
+[node name="InvTest" parent="." instance=ExtResource("5_jka67")]
+
+[node name="InventoryCarousel" parent="InvTest/InventoryOverlay/InventoryRoot/SubViewportContainer/SubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8351, 0, 0)
+
+[node name="WorldObjects" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldObjects"]
+transform = Transform3D(22.5777, 0, 0, 0, 0.0540743, 0, 0, 0, 28.6723, 0, -0.249518, 8.92509)
+use_collision = true
+size = Vector3(1, 1, 1.62256)
+material = SubResource("StandardMaterial3D_noarx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="WorldObjects"]
+transform = Transform3D(-9.86902e-07, 0.0540743, -1.25331e-06, 0, -2.36366e-09, -28.6723, -22.5777, -2.36366e-09, 5.47838e-14, 2.80715, 3.32901, -4.10884)
+use_collision = true
+size = Vector3(1, 1, 0.427246)
+material = SubResource("StandardMaterial3D_noarx")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="WorldObjects"]
+transform = Transform3D(-9.86902e-07, 0.0540743, -1.25331e-06, 0, -2.36366e-09, -28.6723, -22.5777, -2.36366e-09, 5.47838e-14, -1.2739, 1.68292, -0.296286)
+use_collision = true
+size = Vector3(0.10376, 62.0215, 0.0473824)
+material = SubResource("StandardMaterial3D_noarx")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="WorldObjects"]
+transform = Transform3D(-9.86902e-07, 0.0540743, -1.25331e-06, 0, -2.36366e-09, -28.6723, -22.5777, -2.36366e-09, 5.47838e-14, -1.2739, 1.83226, -5.15357)
+use_collision = true
+size = Vector3(0.10376, 62.0215, 0.0473824)
+material = SubResource("StandardMaterial3D_noarx")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="WorldObjects"]
+transform = Transform3D(-9.86902e-07, 0.0540743, -1.25331e-06, 0, -2.36366e-09, -28.6723, -22.5777, -2.36366e-09, 5.47838e-14, -1.2739, 1.17213, 2.05234)
+use_collision = true
+size = Vector3(0.10376, 62.0215, 0.0473824)
+material = SubResource("StandardMaterial3D_noarx")
+
+[node name="Object_TriPlanar_Test2" parent="WorldObjects" instance=ExtResource("3_a0tk4")]
+
+[node name="Floor 2x2_117" parent="WorldObjects/Object_TriPlanar_Test2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.2269, 0, -37.6807)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldObjects/Object_TriPlanar_Test2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29907, 5.05674, 5.0949)
+shape = SubResource("BoxShape3D_r3fl7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93901, 5.05674, 2.66749)
+shape = SubResource("BoxShape3D_r3fl7")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.138557, 3.39693, 2.58771)
+shape = SubResource("BoxShape3D_r3fl7")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
+transform = Transform3D(0.7696, 0.638526, 0, -0.638526, 0.7696, 0, 0, 0, 1, -1.5573, 4.23736, 3.10558)
+shape = SubResource("BoxShape3D_r3fl7")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
+transform = Transform3D(0.765124, -0.643883, 0, 0.643883, 0.765124, 0, 0, 0, 1, -1.64207, 2.56394, 1.92654)
+shape = SubResource("BoxShape3D_r3fl7")
+
+[node name="TubeTEST" parent="WorldObjects" instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39274, 3.64066, -4.18034)
+
+[node name="TextureTest" parent="WorldObjects" instance=ExtResource("6_i5arm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.227794, 20.3241)
+
+[node name="Generator_Battery_Test" parent="WorldObjects" instance=ExtResource("7_6iypd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98801, 0.0834555, 11.662)
+
+[node name="Generator_Can_Test2" parent="WorldObjects" instance=ExtResource("8_tereu")]
+transform = Transform3D(-0.135595, 0, 0.990764, 0, 1, 0, -0.990764, 0, -0.135595, -3.36986, -0.0204905, 12.1716)
+
+[node name="Generator_Can_Test" parent="WorldObjects" instance=ExtResource("8_tereu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.65291, -0.0204898, 11.5789)
+
+[node name="Generator_Filter_Test" parent="WorldObjects" instance=ExtResource("9_cdqbm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26761, -0.010998, 11.5667)
+
+[node name="Generator_Test" parent="WorldObjects" instance=ExtResource("10_imku0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.73148, -0.222481, 14.7627)
+
+[node name="Coolant_Can_Test" parent="WorldObjects" instance=ExtResource("11_tereu")]
+transform = Transform3D(0.584774, 0, 0.811197, 0, 1, 0, -0.811197, 0, 0.584774, -3.73063, -0.02049, 12.1245)
+
+[node name="Coolant_Can_Test2" parent="WorldObjects" instance=ExtResource("11_tereu")]
+transform = Transform3D(-0.332359, 0, 0.943153, 0, 1, 0, -0.943153, 0, -0.332359, -4.13559, -0.02049, 12.0958)
+
+[editable path="ExposureArea"]
+[editable path="PlayerController"]
+[editable path="InvTest"]
+[editable path="InvTest/InventoryOverlay"]
+[editable path="WorldObjects/Object_TriPlanar_Test2"]
+[editable path="WorldObjects/Generator_Can_Test"]
+[editable path="WorldObjects/Generator_Test"]

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://chmclkx27polw"]
+
+[ext_resource type="PackedScene" uid="uid://djnlqrq2skdec" path="res://TEST/TestGenerator/Generator_Can_Test.tscn" id="1_0pcj2"]
+[ext_resource type="Script" uid="uid://pp142victhfa" path="res://Assets/Items/item_data.gd" id="1_jsrxr"]
+
+[resource]
+script = ExtResource("1_jsrxr")
+id = "Oil_Jerry_Can"
+display_name = "Jerry Can (Oil)"
+description = "A jerry can filled with oil for the generator."
+display_scene = ExtResource("1_0pcj2")
+metadata/_custom_type_script = "uid://pp142victhfa"

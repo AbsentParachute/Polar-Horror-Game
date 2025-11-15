@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbtbgxtu83f8k"]
+
+[ext_resource type="Script" uid="uid://cqmdbf2kq6j7l" path="res://Scenes/Main/Exposure Area/exposure_area.gd" id="1_euldp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8p1h"]
+size = Vector3(10.1967, 5.58887, 6.98645)
+
+[node name="ExposureArea" type="Area3D"]
+script = ExtResource("1_euldp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_v8p1h")
+debug_color = Color(0, 0.556863, 0.0509804, 0.545098)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

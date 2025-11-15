@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dpc84gbij1r2f"]
+
+[ext_resource type="Script" uid="uid://pp142victhfa" path="res://Assets/Items/item_data.gd" id="1_4vgvg"]
+[ext_resource type="PackedScene" uid="uid://damk1mgwus72r" path="res://TEST/TestGenerator/Generator_Filter_Test.tscn" id="1_oxuc2"]
+
+[resource]
+script = ExtResource("1_4vgvg")
+id = "Air_Filter"
+display_name = "Air Filter (Clean)"
+description = "A freshly opened air filter to be used with CET 3312 type generators."
+display_scene = ExtResource("1_oxuc2")
+metadata/_custom_type_script = "uid://pp142victhfa"
