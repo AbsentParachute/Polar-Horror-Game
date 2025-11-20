@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=4 uid="uid://dm02kaihng28o"]
+
+[ext_resource type="Script" uid="uid://d7yraqswjciw" path="res://TEST/TestGenerator/generator_battery_full_test.gd" id="1_6mkys"]
+[ext_resource type="Material" uid="uid://dhc6m74wwibde" path="res://TEST/TestGenerator/Clean_Filter_Test.tres" id="1_f8kk2"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vqsof"]
+_surfaces = [{
+"aabb": AABB(-0.2775, -0.305936, -0.180007, 0.555001, 0.40804, 0.360014),
+"format": 34359742465,
+"index_count": 108,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAAAAQABAAAAAIAAwAEAAUABAACAAYABQAEAAYAAwAFAAcAAwAHAAEABQAGAAcAAQAIAAIAAgAJAAYAAgAIAAkABgAKAAcABgAJAAoABwALAAEAAQALAAgABwAKAAsADAAJAAgADQAKAAkADQAJAAwADgALAAoADgAKAA0ADwAIAAsADwALAA4ADAAIAA8ADQAQAA4ADwARAAwADAASAA0ADQASABAADAARABIADgAQABMADgATAA8AEgATABAADwATABEAEgARABMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("hRSOvrWjnL6wUzg+hRSOvuj7bT3QUzi+hRSOvuj7bT2wUzg+hRSOvrWjnL7QUzi+gxSOPrWjnL6wUzg+gxSOPrWjnL7QUzi+gxSOPuj7bT2wUzg+gxSOPuj7bT3QUzi+hRSOvsQ6lT2wUzg+gxSOPsQ6lT2wUzg+gxSOPsQ6lT3QUzi+hRSOvsQ6lT3QUzi+juOCPsQ6lT3A8SE+juOCPsQ6lT3g8SG+j+OCvsQ6lT3g8SG+j+OCvsQ6lT3A8SE+j+OCvmwb0T3g8SG+juOCPmwb0T3A8SE+juOCPmwb0T3g8SG+j+OCvmwb0T3A8SE+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hgxdr"]
+resource_name = "Generator_Battery_Test_Cube_403"
+_surfaces = [{
+"aabb": AABB(-0.2775, -0.305936, -0.180007, 0.555001, 0.40804, 0.360014),
+"attribute_data": PackedByteArray("AADAPgAAgD8AACA/AABAPwAAID8AAIA/AADAPgAAQD8AACA/AACAPwAAID8AAEA/AADAPgAAQD8AACA/AAAAPwAAID8AAEA/AADAPgAAAD8AACA/AABAPwAAID8AAAA/AADAPgAAAD8AACA/AACAPgAAID8AAAA/AADAPgAAgD4AACA/AAAAPwAAID8AAIA+AADAPgAAgD4AACA/AAAAAAAAID8AAIA+AADAPgAAAAAAACA/AACAPgAAID8AAAAAAAAAPgAAAD8AAMA+AACAPgAAwD4AAAA/AAAAPgAAgD5ChSI/esWHPkKFIj+GOvg+QoUiP4Y6+D5ChSI/esWHPr56XT94xYc+AABgPwAAAD++el0/hjr4PgAAID8AAAA/AABgPwAAgD5ChSI/hjr4PkKFIj96xYc+AAAgPwAAgD5ChSI/hjr4Pr56XT94xYc+vnpdP4Y6+D5ChSI/esWHPr56XT+GOvg+vnpdP3jFhz6+el0/eMWHPr56XT+GOvg+vnpdP3jFhz5ChSI/esWHPkKFIj96xYc+vnpdP3jFhz5ChSI/hjr4Pr56XT+GOvg+vnpdP4Y6+D5ChSI/hjr4Pg=="),
+"format": 34359742487,
+"index_count": 108,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAQAEAAIAAQAFAAQABgAHAAgABgAJAAcABwAKAAgABwALAAoADAANAA4ADAAPAA0ADQAQAA4ADQARABAAEgATABQAEgAVABMAEwAWABQAEwAXABYAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIgAhACMAIAAkACEAIgAjACUAJgAkACAAJQAjACcAJgAnACQAJQAnACYAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUA"),
+"material": ExtResource("1_f8kk2"),
+"name": "Battery",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 56,
+"vertex_data": PackedByteArray("hRSOvrWjnL6wUzg+hRSOvuj7bT3QUzi+hRSOvuj7bT2wUzg+hRSOvrWjnL7QUzi+hRSOvsQ6lT2wUzg+hRSOvsQ6lT3QUzi+hRSOvrWjnL7QUzi+gxSOPuj7bT3QUzi+hRSOvuj7bT3QUzi+gxSOPrWjnL7QUzi+hRSOvsQ6lT3QUzi+gxSOPsQ6lT3QUzi+gxSOPrWjnL7QUzi+gxSOPuj7bT2wUzg+gxSOPuj7bT3QUzi+gxSOPrWjnL6wUzg+gxSOPsQ6lT3QUzi+gxSOPsQ6lT2wUzg+gxSOPrWjnL6wUzg+hRSOvuj7bT2wUzg+gxSOPuj7bT2wUzg+hRSOvrWjnL6wUzg+gxSOPsQ6lT2wUzg+hRSOvsQ6lT2wUzg+hRSOvrWjnL7QUzi+gxSOPrWjnL6wUzg+gxSOPrWjnL7QUzi+hRSOvrWjnL6wUzg+juOCPsQ6lT3A8SE+juOCPmwb0T3g8SG+juOCPsQ6lT3g8SG+juOCPmwb0T3A8SE+j+OCvsQ6lT3A8SE+hRSOvsQ6lT3QUzi+j+OCvsQ6lT3g8SG+gxSOPsQ6lT3QUzi+hRSOvsQ6lT2wUzg+juOCPsQ6lT3g8SG+juOCPsQ6lT3A8SE+gxSOPsQ6lT2wUzg+juOCPmwb0T3g8SG+j+OCvmwb0T3A8SE+j+OCvmwb0T3g8SG+juOCPmwb0T3A8SE+j+OCvsQ6lT3g8SG+j+OCvmwb0T3A8SE+j+OCvsQ6lT3A8SE+j+OCvmwb0T3g8SG+j+OCvsQ6lT3A8SE+juOCPmwb0T3A8SE+juOCPsQ6lT3A8SE+j+OCvmwb0T3A8SE+juOCPsQ6lT3g8SG+j+OCvmwb0T3g8SG+j+OCvsQ6lT3g8SG+juOCPmwb0T3g8SG+AAD/f/9///8AAP9//3///wAA/3//f///AAD/f/9///8AAP9/////vwAA/3////+///////9//////////3//////////f/////////9/////////////v/////////+/////f/9///////9//3///////3//f///////f/9///////9/////v////3////+//3//f/9/////f/9//3////9//3//f////3//f/9/////f/9/////P/9//3////8//38AAP///7//fwAA////v/9/AAD///+//38AAP///7////9/////v////3////+/////f////7////9/////v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+//3//f////z//f/9/////P/9//3////8//3//f////z//////////v/////////+//////////7//////////vw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vqsof")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mkys"]
+size = Vector3(0.570862, 0.422363, 0.391602)
+
+[node name="Generator_Battery_Test" type="StaticBody3D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_6mkys")
+
+[node name="Battery_A_002" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_hgxdr")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000152588, -0.101318, -0.00341797)
+shape = SubResource("BoxShape3D_6mkys")

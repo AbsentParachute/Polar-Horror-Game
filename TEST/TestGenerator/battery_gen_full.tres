@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://yxa3qyhp10jn"]
+
+[ext_resource type="PackedScene" uid="uid://dm02kaihng28o" path="res://TEST/TestGenerator/Generator_Battery_Full_Test.tscn" id="1_qtb5d"]
+[ext_resource type="Script" uid="uid://pp142victhfa" path="res://Assets/Items/item_data.gd" id="2_p24f2"]
+
+[resource]
+script = ExtResource("2_p24f2")
+id = "Battery_Gen_Full"
+display_name = "Generator Battery (Full)"
+description = "A large battery used by CET generators."
+display_scene = ExtResource("1_qtb5d")
+metadata/_custom_type_script = "uid://pp142victhfa"

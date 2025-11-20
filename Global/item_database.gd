@@ -4,10 +4,12 @@ extends Node
 ## NOTE any changes mad to the filepath including name must also be changed here.
 
 const ITEMS: Array[ItemData] = [
+	# Test Items for Generator
 	preload("res://TEST/TestGenerator/oil_jerry_can.tres"),
 	preload("res://TEST/TestGenerator/coolant_jerry_can.tres"),
-	preload("res://TEST/TestGenerator/air_filter.tres")
-	
+	preload("res://TEST/TestGenerator/air_filter.tres"),
+	preload("res://TEST/TestGenerator/battery_gen.tres"),
+	preload("res://TEST/TestGenerator/battery_gen_full.tres")
 ]
 
 var _items_by_id : Dictionary = {} # String -> ItemData

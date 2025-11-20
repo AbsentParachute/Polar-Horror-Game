@@ -21,6 +21,7 @@ DayService="*res://Global/day_service.gd"
 WeatherService="*res://Global/weather_service.gd"
 ItemDatabase="*res://Global/item_database.gd"
 InventoryManager="*res://Global/inventory_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dotnet]
 
@@ -28,7 +29,7 @@ project/assembly_name="Polar Horror Game"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
 
 [global_group]
 
@@ -106,5 +107,7 @@ interact={
 
 [physics]
 
+common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
+3d/vsync/vsync_mode=1

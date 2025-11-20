@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp8rfklhar2f4"]
+[gd_scene load_steps=7 format=3 uid="uid://bp8rfklhar2f4"]
 
 [ext_resource type="Script" uid="uid://b6d6tkf5yhh1e" path="res://UI/inventory_overlay.gd" id="1_d5tdc"]
 [ext_resource type="Script" uid="uid://rqytcsvx8q33" path="res://UI/inventory_carousel.gd" id="1_gysbe"]
+
+[sub_resource type="Gradient" id="Gradient_d5tdc"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y4oli"]
+gradient = SubResource("Gradient_d5tdc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdelr"]
+shading_mode = 0
+albedo_color = Color(0.713726, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture1D_y4oli")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d5tdc"]
+material = SubResource("StandardMaterial3D_tdelr")
 
 [node name="InventoryOverlay" type="CanvasLayer"]
 
@@ -38,6 +51,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
 current = true
 
 [node name="ItemsRoot" type="Node3D" parent="InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel"]
+transform = Transform3D(6, 0, 0, 0, -2.62268e-07, -6, 0, 6, -2.62268e-07, 0, 0, -1.20282)
+mesh = SubResource("PlaneMesh_d5tdc")
+skeleton = NodePath("../..")
 
 [node name="LeftButton" type="Button" parent="InventoryRoot"]
 layout_mode = 1
