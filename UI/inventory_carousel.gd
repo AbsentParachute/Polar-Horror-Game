@@ -24,6 +24,7 @@ var _spin_pivot: Node3D = null # child node we rotate on focus
 func open_and_build() -> void: # when "I" is pressed run this func
 	selected_index = 0 # Resets the selected item to 0
 	self.visible = true
+	
 	inv_cam.current = true
 	_build_from_inventory()
 	_update_visible_set(false)
@@ -85,6 +86,11 @@ func _build_from_inventory() -> void:
 		#Create a wrapper for each item in inventory (index)
 		var data: ItemData = items[i]
 		var wrapper := Node3D.new()
+		
+		# TEST
+		wrapper.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+		# TEST
+
 		wrapper.name = "Item_%d" % i # %d is format specifier for decimal int, % adds the "i' ass the int. so Item_1 if i=1
 		items_root.add_child(wrapper)
 		_wrappers.append(wrapper)
@@ -92,12 +98,21 @@ func _build_from_inventory() -> void:
 		# Add a pivot node3d as a child of wrapper
 		if data != null and data.display_scene != null:
 			var pivot := Node3D.new()
+			
+			# TEST
+			pivot.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+			# TEST
+			
+			
 			pivot.name = "SpinPivot"
 			wrapper.add_child(pivot)
 			
 			# Instantiate the item's scene as child of the pivot
 			var inst := data.display_scene.instantiate()
+			
+
 			if inst is Node3D:
+				inst.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 				pivot.add_child(inst)
 				inst.position = Vector3.ZERO
 
