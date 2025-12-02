@@ -4,7 +4,6 @@ extends Node
 @onready var overlay: Control = $InventoryOverlay/InventoryRoot
 @onready var carousel: InventoryCarousel = $InventoryOverlay/InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel
 
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory_toggle"):
 		if overlay.visible:

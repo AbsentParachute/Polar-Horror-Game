@@ -29,6 +29,7 @@ func _ready() -> void:
 func open_inventory() -> void:
 	visible = true
 	_resize_subviewport()
+	
 	carousel.open_and_build()
 	_refresh_labels()
 

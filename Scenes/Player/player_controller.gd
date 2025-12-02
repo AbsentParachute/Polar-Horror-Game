@@ -11,7 +11,6 @@ extends CharacterBody3D
 @export var crouch_check : ShapeCast3D
 @export var interaction_raycast: RayCast3D
 
-
 @export_category("Movement Settings")
 @export_group("Easing")
 @export var acceleration : float = 0.2
@@ -29,7 +28,13 @@ var sprint_modifier : float = 0.0
 var crouch_modifier : float = 0.0
 var speed : float = 3.0
 
+##TEST
+#var _target_yaw: float = 0.0
+
 func _physics_process(delta: float) -> void:
+	##TEST
+	#rotation.y = _target_yaw
+	
 	var grounded = is_on_floor()
 	
 	if not grounded:
@@ -58,15 +63,16 @@ func _physics_process(delta: float) -> void:
 
 func update_rotation(rotation_input) -> void:
 	global_transform.basis = Basis.from_euler(rotation_input)
-
+	
+##TEST
+#func set_target_yaw(yaw: float) -> void:
+	#_target_yaw = yaw
 
 func sprint() -> void:
 	sprint_modifier = sprint_speed
 
-
 func walk() -> void:
 	sprint_modifier = 0.0
-
 
 func stand() -> void:
 	crouch_modifier = 0.0
@@ -77,7 +83,6 @@ func crouch() -> void:
 	crouch_modifier = crouch_speed
 	standing_collision.disabled = true
 	crouching_collision.disabled = false
-
 
 func jump() -> void:
 	velocity.y += jump_velocity

@@ -21,10 +21,12 @@ var selected_index: int = 0
 var _wrappers: Array[Node3D] = [] # one wrapper per item; each is a Node3D per item each containing a SpinPivot(N3D) and display_scene instance
 var _spin_pivot: Node3D = null # child node we rotate on focus
 
+func _ready() -> void:
+	inv_cam.current = false
+
 func open_and_build() -> void: # when "I" is pressed run this func
 	selected_index = 0 # Resets the selected item to 0
 	self.visible = true
-	
 	inv_cam.current = true
 	_build_from_inventory()
 	_update_visible_set(false)
@@ -32,6 +34,7 @@ func open_and_build() -> void: # when "I" is pressed run this func
 
 func close_inventory() -> void:
 	self.visible = false
+	inv_cam.current = false
 	set_process(false)
 
 # Used by left-button
@@ -65,7 +68,6 @@ func rebuild_after_inventory_change() -> void: #Call this if items changed while
 func _process(delta: float) -> void:
 	if _spin_pivot != null:
 		_spin_pivot.rotate_y(deg_to_rad(spin_speed_deg) * delta)
-
 
 ## --- Build Inventory --- ##
 func _build_from_inventory() -> void:
@@ -115,7 +117,6 @@ func _build_from_inventory() -> void:
 				inst.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 				pivot.add_child(inst)
 				inst.position = Vector3.ZERO
-
 
 ## --- Layout for 3 visible slots --- ##
 func _update_visible_set(animated: bool) -> void:

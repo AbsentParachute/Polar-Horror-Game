@@ -5,7 +5,6 @@ extends Node
 ## This is the controller for ANY mouse capture activity and thus needs a signal to change the states of mouse_mode
 ## Otherwise you will have bad physics interpolation / jittering when moving and turning mouse
 
-
 @export var debug : bool = false
 
 @export_category("References")
@@ -30,6 +29,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	Input.mouse_mode = current_mouse_mode
 	EventBus.mouse_mode_changed.connect(_mouse_mode_changed)
+
+#func consume_mouse_delta() -> Vector2:
+	#var delta := _mouse_input
+	#_mouse_input = Vector2.ZERO
+	#return delta
 
 func _process(_delta: float) -> void:
 	_mouse_input = Vector2.ZERO

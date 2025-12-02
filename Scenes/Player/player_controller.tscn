@@ -31,7 +31,7 @@ height = 1.0
 radius = 0.4
 height = 1.0
 
-[node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("camera", "state_chart", "standing_collision", "crouching_collision", "crouch_check", "interaction_raycast") groups=["PLAYER"]]
+[node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("camera", "state_chart", "standing_collision", "crouching_collision", "crouch_check", "interaction_raycast")]
 script = ExtResource("1_veqsw")
 camera = NodePath("CameraController")
 state_chart = NodePath("StateChart")
@@ -71,7 +71,6 @@ player_controller = NodePath("..")
 component_mouse_capture = NodePath("../Components/MouseCapture")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
-physics_interpolation_mode = 1
 
 [node name="InteractionRaycast" type="RayCast3D" parent="CameraController/Camera3D" node_paths=PackedStringArray("interactor")]
 target_position = Vector3(0, 0, -3)
