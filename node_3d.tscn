@@ -1,18 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://ovfdfglfrfjv"]
+[gd_scene load_steps=17 format=3 uid="uid://ovfdfglfrfjv"]
 
 [ext_resource type="PackedScene" uid="uid://8uycgvno1ol6" path="res://Scenes/Player/player_controller.tscn" id="2_a0tk4"]
 [ext_resource type="PackedScene" uid="uid://cbtbgxtu83f8k" path="res://Scenes/Main/Exposure Area/exposure_area.tscn" id="2_noarx"]
-[ext_resource type="PackedScene" uid="uid://ct7uvqv4v65qs" path="res://TEST/TestBuilding/Object_TriPlanar_Test.tscn" id="3_a0tk4"]
-[ext_resource type="PackedScene" uid="uid://b5uj0yp2jqawu" path="res://TEST/TestBuilding/TubeTEST.glb" id="4_r3fl7"]
 [ext_resource type="PackedScene" uid="uid://dydlk8um0kt5u" path="res://TEST/TestItems/test_inv.tscn" id="5_jka67"]
-[ext_resource type="PackedScene" uid="uid://d231oqqhj3mee" path="res://TEST/TestBuilding/TextureTest.tscn" id="6_i5arm"]
 [ext_resource type="PackedScene" uid="uid://o55mv3or0028" path="res://TEST/TestGenerator/Generator_Battery_Test.tscn" id="7_6iypd"]
 [ext_resource type="PackedScene" uid="uid://djnlqrq2skdec" path="res://TEST/TestGenerator/Generator_Can_Test.tscn" id="8_tereu"]
 [ext_resource type="PackedScene" uid="uid://damk1mgwus72r" path="res://TEST/TestGenerator/Generator_Filter_Test.tscn" id="9_cdqbm"]
 [ext_resource type="PackedScene" uid="uid://f01hjqah1sfh" path="res://TEST/TestGenerator/Generator_Test.tscn" id="10_imku0"]
+[ext_resource type="Script" uid="uid://bnnhvum3xb4hu" path="res://focus_test.gd" id="11_cdqbm"]
 [ext_resource type="PackedScene" uid="uid://bld56i5qxosly" path="res://TEST/TestGenerator/Coolant_Can_Test.tscn" id="11_tereu"]
 [ext_resource type="PackedScene" uid="uid://dm02kaihng28o" path="res://TEST/TestGenerator/Generator_Battery_Full_Test.tscn" id="12_cdqbm"]
-[ext_resource type="PackedScene" uid="uid://pw445vxgnyup" path="res://TEST/TestGenerator/Generator_Test.glb" id="13_imku0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0tk4"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -35,9 +32,6 @@ gradient = SubResource("Gradient_noarx")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noarx"]
 albedo_color = Color(0.223529, 1, 1, 1)
 albedo_texture = SubResource("GradientTexture1D_a0tk4")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_r3fl7"]
-size = Vector3(2.29822, 0.241455, 1.1212)
 
 [node name="Node3D" type="Node3D"]
 
@@ -87,39 +81,6 @@ use_collision = true
 size = Vector3(0.10376, 62.0215, 0.0473824)
 material = SubResource("StandardMaterial3D_noarx")
 
-[node name="Object_TriPlanar_Test2" parent="WorldObjects" instance=ExtResource("3_a0tk4")]
-
-[node name="Floor 2x2_117" parent="WorldObjects/Object_TriPlanar_Test2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.2269, 0, -37.6807)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="WorldObjects/Object_TriPlanar_Test2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29907, 5.05674, 5.0949)
-shape = SubResource("BoxShape3D_r3fl7")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93901, 5.05674, 2.66749)
-shape = SubResource("BoxShape3D_r3fl7")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.138557, 3.39693, 2.58771)
-shape = SubResource("BoxShape3D_r3fl7")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
-transform = Transform3D(0.7696, 0.638526, 0, -0.638526, 0.7696, 0, 0, 0, 1, -1.5573, 4.23736, 3.10558)
-shape = SubResource("BoxShape3D_r3fl7")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="WorldObjects/Object_TriPlanar_Test2/StaticBody3D"]
-transform = Transform3D(0.765124, -0.643883, 0, 0.643883, 0.765124, 0, 0, 0, 1, -1.64207, 2.56394, 1.92654)
-shape = SubResource("BoxShape3D_r3fl7")
-
-[node name="TubeTEST" parent="WorldObjects" instance=ExtResource("4_r3fl7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39274, 3.64066, -4.18034)
-
-[node name="TextureTest" parent="WorldObjects" instance=ExtResource("6_i5arm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.227794, 20.3241)
-
 [node name="Generator_Battery_Test" parent="WorldObjects" instance=ExtResource("7_6iypd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98801, 0.0834555, 11.662)
 
@@ -150,21 +111,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86967, 0.0834555, 11.6345)
 [node name="Generator_Battery_Test3" parent="WorldObjects" instance=ExtResource("12_cdqbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75602, 0.0834555, 11.0525)
 
-[node name="Generator_Test" parent="." instance=ExtResource("13_imku0")]
+[node name="Generator_Test" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(-0.20922603, 0, -0.9778673, 0, 1, 0, 0.9778673, 0, -0.20922603, 3.3980386, -0.21696398, 12.525324)
-
-[node name="PlayerController" parent="." instance=ExtResource("2_a0tk4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8387575, 8.778734)
+script = null
 
 [node name="Node" parent="." instance=ExtResource("5_jka67")]
 
-[node name="SubViewport" parent="Node/InventoryOverlay/InventoryRoot/SubViewportContainer" index="0"]
-own_world_3d = true
+[node name="PlayerController" parent="." instance=ExtResource("2_a0tk4")]
+
+[node name="Unfocus Fix" type="Node" parent="."]
+script = ExtResource("11_cdqbm")
 
 [editable path="ExposureArea"]
-[editable path="WorldObjects/Object_TriPlanar_Test2"]
 [editable path="WorldObjects/Generator_Can_Test"]
 [editable path="WorldObjects/Generator_Test"]
-[editable path="PlayerController"]
 [editable path="Node"]
 [editable path="Node/InventoryOverlay"]
+[editable path="PlayerController"]

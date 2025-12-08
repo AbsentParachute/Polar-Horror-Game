@@ -26,6 +26,9 @@ script = ExtResource("1_2kmic")
 [node name="SubViewportContainer" parent="InventoryOverlay/InventoryRoot" index="0"]
 stretch = false
 
+[node name="SubViewport" parent="InventoryOverlay/InventoryRoot/SubViewportContainer" index="0"]
+own_world_3d = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="InventoryOverlay/InventoryRoot/SubViewportContainer/SubViewport" index="0"]
 environment = SubResource("Environment_q1pnh")
 

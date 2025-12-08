@@ -9,4 +9,5 @@ id = "Test1"
 display_name = "Blue Box"
 description = "A blue box with magical powers."
 display_scene = ExtResource("1_aa78y")
+actions = null
 metadata/_custom_type_script = "uid://pp142victhfa"

@@ -17,6 +17,7 @@ albedo_texture = SubResource("GradientTexture1D_y4oli")
 material = SubResource("StandardMaterial3D_tdelr")
 
 [node name="InventoryOverlay" type="CanvasLayer"]
+physics_interpolation_mode = 2
 
 [node name="InventoryRoot" type="Control" parent="."]
 layout_mode = 3

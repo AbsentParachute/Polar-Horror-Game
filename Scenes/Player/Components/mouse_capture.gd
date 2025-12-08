@@ -1,9 +1,9 @@
 class_name MouseCaptureComponent
 extends Node
 
-##NOTE:
-## This is the controller for ANY mouse capture activity and thus needs a signal to change the states of mouse_mode
-## Otherwise you will have bad physics interpolation / jittering when moving and turning mouse
+#NOTE:
+# This is the controller for ANY mouse capture activity and thus needs a signal to change the states of mouse_mode
+# Otherwise you will have bad physics interpolation / jittering when moving and turning mouse
 
 @export var debug : bool = false
 

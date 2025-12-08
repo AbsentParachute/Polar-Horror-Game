@@ -1,8 +1,9 @@
 extends RepairTaskComponent
 
 #TODO
-# 1. Connect UI
-# 2. Connect Sounds
+# 1. Change prelod to be a preload UID
+# 2. Connect UI
+# 3. Connect Sounds
 
 @export var filter_a : MeshInstance3D
 @export var filter_b : MeshInstance3D

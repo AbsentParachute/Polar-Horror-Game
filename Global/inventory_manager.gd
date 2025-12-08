@@ -1,5 +1,9 @@
 extends Node
 
+## TEST Working on item usage
+#signal item_used(item_id : String) # emitted by the carousel or soemthing.
+## TEST
+
 var _items: Array[ItemData] = []
 
 func _add_item(item: ItemData) -> void:

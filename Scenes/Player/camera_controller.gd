@@ -1,6 +1,11 @@
 class_name CameraController
 extends Node3D
 
+# NOTE
+# No more jitter - Jitter caused by CSG meshes as objects and the Alt+Esc can be fixed by pausing the game and resuming. Need full time solution.
+# Sill required to have everything as physics_process. Choppy camera when in process. 
+# Might be able to fix by transforming the cameracontroller via the advanced interpolation and keeping it top level.
+
 const DEFAULT_HEIGHT : float = 0.5
 
 @export var debug : bool = false
@@ -20,9 +25,6 @@ const DEFAULT_HEIGHT : float = 0.5
 var _rotation : Vector3
 
 func _physics_process(_delta: float) -> void:
-	#var look = component_mouse_capture.consume_mouse_delta()
-	#if look != Vector2.ZERO:
-		#update_camera_rotation(look)
 	update_camera_rotation(component_mouse_capture._mouse_input)
 
 func update_camera_rotation(input: Vector2) -> void:
@@ -34,13 +36,8 @@ func update_camera_rotation(input: Vector2) -> void:
 	var _camera_rotation = Vector3(_rotation.x, 0.0, 0.0)
 	
 	transform.basis = Basis.from_euler(_camera_rotation)
-
 	player_controller.update_rotation(_player_rotation)
-	
 	rotation.z = 0.0
-	
-	##TEST
-	#player_controller.set_target_yaw(_rotation.y)
 
 func update_camera_height(delta: float, direction: int) -> void:
 	if position.y >= crouch_offset and position.y <= DEFAULT_HEIGHT:

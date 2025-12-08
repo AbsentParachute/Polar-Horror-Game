@@ -1,4 +1,4 @@
-class_name PlayerController
+class_name PlayerController2
 extends CharacterBody3D
 
 #TODO: Need to lower airborne speed or add deceleration
@@ -22,29 +22,32 @@ extends CharacterBody3D
 @export_group("Jump Settings")
 @export var jump_velocity : float = 5.
 
-## TEST Working on using items
-#
-#const NO_ITEM_ID : String = ""
-#
-#var active_item_id : String = NO_ITEM_ID
-#
-## TEST
-
 var _input_dir : Vector2 = Vector2.ZERO
 var _movement_velocity : Vector3 = Vector3.ZERO
 var sprint_modifier : float = 0.0
 var crouch_modifier : float = 0.0
 var speed : float = 3.0
 
+var _prev_global_transform: Transform3D
+var _curr_global_transform: Transform3D
+
+var processes_enabled : bool = true
+
+func _ready() -> void:
+	_prev_global_transform = global_transform
+	_curr_global_transform = global_transform
 
 func _physics_process(delta: float) -> void:
-	
+	# --- manual interpolation bookkeeping ---
+	_prev_global_transform = _curr_global_transform
+	# ---------------------------------------
+
 	var grounded = is_on_floor()
 	
 	if not grounded:
 		velocity += get_gravity() * delta
 		
-	var speed_modifier = crouch_modifier #If you are on the ground then ists basically crouch+sprint
+	var speed_modifier = crouch_modifier
 	if grounded:
 		speed_modifier += sprint_modifier
 	
@@ -60,13 +63,24 @@ func _physics_process(delta: float) -> void:
 		current_velocity = current_velocity.move_toward(Vector2.ZERO, deceleration)
 	
 	_movement_velocity = Vector3(current_velocity.x, velocity.y, current_velocity.y)
-	
 	velocity = _movement_velocity
 
 	move_and_slide()
 
-func update_rotation(rotation_input) -> void:
-	global_transform.basis = Basis.from_euler(rotation_input)
+	# --- after movement, record new transform ---
+	_curr_global_transform = global_transform
+	# -------------------------------------------
+
+func get_smooth_transform() -> Transform3D:
+	var alpha: float = Engine.get_physics_interpolation_fraction()
+	return _prev_global_transform.interpolate_with(_curr_global_transform, alpha)
+
+
+func update_rotation(yaw: float) -> void:
+	var current_rot: Vector3 = rotation
+	current_rot.y = yaw
+	rotation = current_rot
+
 
 func sprint() -> void:
 	sprint_modifier = sprint_speed
