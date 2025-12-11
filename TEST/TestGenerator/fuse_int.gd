@@ -9,6 +9,12 @@ func _ready() -> void:
 	# If we need, automatically set ray_pickable as well as delcare monitoruyabel etc.
 	pass
 
+func _input_event(camera, event, position, normal, shape_idx) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			# You can pass null or a reference depending on your design
+			interact(null)
+
 @warning_ignore("unused_parameter")
 func interact(interactor) -> void:
 	fuse_interacted.emit(fuse_id)

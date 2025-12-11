@@ -25,6 +25,9 @@ const DEFAULT_HEIGHT : float = 0.5
 var _rotation : Vector3
 
 func _physics_process(_delta: float) -> void:
+	if player_controller.camera_state != EventBus.Camera_State.PLAYER: # Player Controller holds the one truth of state which is why I am referecning here.
+		return
+	
 	update_camera_rotation(component_mouse_capture._mouse_input)
 
 func update_camera_rotation(input: Vector2) -> void:

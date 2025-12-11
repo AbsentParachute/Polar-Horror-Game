@@ -38,7 +38,7 @@ state_chart = NodePath("StateChart")
 standing_collision = NodePath("StandingCollision")
 crouching_collision = NodePath("CrouchingCollision")
 crouch_check = NodePath("ShapeCast3D")
-interaction_raycast = NodePath("CameraController/Camera3D/InteractionRaycast")
+interaction_raycast = NodePath("CameraController/InteractionRaycast")
 default_speed = 4.0
 crouch_speed = -2.0
 
@@ -72,12 +72,12 @@ component_mouse_capture = NodePath("../Components/MouseCapture")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 
-[node name="InteractionRaycast" type="RayCast3D" parent="CameraController/Camera3D" node_paths=PackedStringArray("interactor")]
+[node name="InteractionRaycast" type="RayCast3D" parent="CameraController" node_paths=PackedStringArray("interactor")]
 target_position = Vector3(0, 0, -3)
 collision_mask = 33
 collide_with_areas = true
 script = ExtResource("4_e7i6p")
-interactor = NodePath("../../..")
+interactor = NodePath("../..")
 
 [node name="Components" type="Node" parent="."]
 

@@ -111,19 +111,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86967, 0.0834555, 11.6345)
 [node name="Generator_Battery_Test3" parent="WorldObjects" instance=ExtResource("12_cdqbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75602, 0.0834555, 11.0525)
 
-[node name="Generator_Test" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(-0.20922603, 0, -0.9778673, 0, 1, 0, 0.9778673, 0, -0.20922603, 3.3980386, -0.21696398, 12.525324)
-script = null
-
 [node name="Node" parent="." instance=ExtResource("5_jka67")]
 
 [node name="PlayerController" parent="." instance=ExtResource("2_a0tk4")]

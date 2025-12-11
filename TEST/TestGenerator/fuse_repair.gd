@@ -1,5 +1,11 @@
 extends RepairTaskComponent
 
+# TODO:
+# DONE - Figure out how to allow mouse to "interact" with fuses. Mouse needs to be a ray and function like the current interaction. 
+# Fine tune collision shapes for the weird camera angle
+
+# NOTE: For dictionaries, the "key" is unique identifier to search to find a "value"
+# Below the "Key" is fuse_id and the "Value" is the node.
 var fuse_areas : Dictionary = {}
 var fuse_meshes : Dictionary = {}
 var fuse_lights : Dictionary = {}
@@ -12,21 +18,34 @@ var _flash_tweens : Dictionary = {} # Stores fuse_id to refer back to specific t
 const FUSE_GOOD : StandardMaterial3D = preload("uid://cpyf4f3su2101")
 
 func _ready() -> void:
-	# Connect all child interact signals, remove collision and fill all dictionaries 
+	# Remove collisions
 	for child in get_children():
 		if child is Interactable:
 			fuse_areas[child.fuse_id] = child # Add child to dict
 			child.set_collision_layer_value(6, false) 
-			_collect_parts(child) # Run func to add mesh and lights to dicts
-			child.fuse_interacted.connect(_on_fuse_interacted)
+	
+	#super._ready()
+	
 	# TEST
-	start_flash(FuseTypes.FuseID.S2)
-	start_flash(FuseTypes.FuseID.S1)
-
+	#start_flash(FuseTypes.FuseID.S2)
+	#start_flash(FuseTypes.FuseID.S1)
+	prepare_repair()
 
 func prepare_repair() -> void:
 	repair_completed = false
 	set_process(true)
+	
+	# Connect all child interact signals, and fill all dictionaries 
+	for child in get_children():
+		if child is Interactable:
+			fuse_areas[child.fuse_id] = child # Add child to dict
+			_collect_parts(child) # Run func to add mesh and lights to dicts
+			child.fuse_interacted.connect(_on_fuse_interacted)
+	
+	# Give green light by default
+	for light : MeshInstance3D in fuse_lights.values():
+		light.set_surface_override_material(1, FUSE_GOOD)
+	
 	# Build all fuses
 	all_fuses.clear()
 	for value in FuseTypes.FuseID.values():
@@ -41,10 +60,18 @@ func prepare_repair() -> void:
 	selected_fuses = selected_fuses.slice(0, randi_range(3, 14))
 	
 	# Sift through selected fuses and enable collision
+	for value in selected_fuses:
+		var area : Area3D = fuse_areas[value]
+		area.set_collision_layer_value(6, true)
+
+		var light : MeshInstance3D = fuse_lights[value]
+		light.set_surface_override_material(1, null) # Remove the override material
+		start_flash(value)
 
 func _check_repair_completeion() -> void:
 	if selected_fuses.is_empty(): # Since we remove the fuse_id once selected_fuses is empty then we know we are done
 		repair_task_completed.emit()
+		print("Fuse repair completed")
 	else:
 		return
 
@@ -67,7 +94,7 @@ func _on_fuse_interacted(fuse_id) -> void:
 	
 	if mesh.visible == false:
 		if not InventoryManager.has_item_id(fuse_item_id):
-			print("Missing correct fuse in inventory")
+			print("Missing correct fuse in inventory, need", fuse_item_id)
 			return
 		else:
 			stop_flash(fuse_id)

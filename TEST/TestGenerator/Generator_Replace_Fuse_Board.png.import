@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8r5vu2cgvh8y"
-path.s3tc="res://.godot/imported/Generator_guage_Test_Fuse_Board.png-87ab5d24189eba60d344517395d084ea.s3tc.ctex"
+uid="uid://h73e1ke6um4a"
+path.s3tc="res://.godot/imported/Generator_Replace_Fuse_Board.png-c0fd7143a21837873f1a681a7350a917.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "2a1af8425122ee6c462bd8fe6664360a"
+"md5": "bacd06a89b189991b631efa674a0e30e"
 }
 
 [deps]
 
-source_file="res://TEST/TestGenerator/Generator_guage_Test_Fuse_Board.png"
-dest_files=["res://.godot/imported/Generator_guage_Test_Fuse_Board.png-87ab5d24189eba60d344517395d084ea.s3tc.ctex"]
+source_file="res://TEST/TestGenerator/Generator_Replace_Fuse_Board.png"
+dest_files=["res://.godot/imported/Generator_Replace_Fuse_Board.png-c0fd7143a21837873f1a681a7350a917.s3tc.ctex"]
 
 [params]
 

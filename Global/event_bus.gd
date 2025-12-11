@@ -26,3 +26,13 @@ signal task_completed(task_id: String)
 enum MouseMode {VISIBLE, CAPTURED} # Add others as needed
 @warning_ignore("unused_signal")
 signal mouse_mode_changed(mode: int) # Emit like EventBus.mouse_mode_changed.emit(EventBus.MouseMode.VISIBILE)
+
+# TEST WIP 12/10/25
+# Player/Camera STATE related events
+enum Camera_State {PLAYER, # Default State, Full Movement, Camera Active
+				FROZEN # When in Inventory or other states where Player cannot move. Game NOT Frozen
+} 
+@warning_ignore("unused_signal")
+signal camera_state_changed(state : Camera_State) # Emit when you need to change the camera state.
+@warning_ignore("unused_signal")
+signal target_camera_transform(target_global_transforms : Transform3D) # Sends the Transform3D to Player/Camera to tween the camera

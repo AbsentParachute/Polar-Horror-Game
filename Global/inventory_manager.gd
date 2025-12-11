@@ -1,7 +1,10 @@
 extends Node
 
-## TEST Working on item usage
-#signal item_used(item_id : String) # emitted by the carousel or soemthing.
+## TEST WIP 12/10/25
+enum Inventory_State { NORMAL, FUSE } # TUsed to control when item functions are visible for specific items
+
+var inventory_state : Inventory_State = Inventory_State.NORMAL
+
 ## TEST
 
 var _items: Array[ItemData] = []
