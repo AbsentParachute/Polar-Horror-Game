@@ -1,4 +1,4 @@
-[gd_scene load_steps=367 format=4 uid="uid://f01hjqah1sfh"]
+[gd_scene load_steps=369 format=4 uid="uid://f01hjqah1sfh"]
 
 [ext_resource type="Material" uid="uid://fvs8lemq51k2" path="res://TEST/TestGenerator/Battery_Test.tres" id="1_fe2i3"]
 [ext_resource type="Script" uid="uid://b3vksc5ptdca2" path="res://TEST/TestGenerator/generator_manager.gd" id="1_sbrfv"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://c2vgwrh2muyr0" path="res://TEST/TestGenerator/fuse_repair.gd" id="20_j0wv0"]
 [ext_resource type="Texture2D" uid="uid://d2vyie2y264n3" path="res://TEST/TestGenerator/Generator_guage_Test_Fuse_Texture.png" id="20_qq3xd"]
 [ext_resource type="Texture2D" uid="uid://bbmbx5usyfpub" path="res://TEST/TestGenerator/Generator_guage_Test_Light_UV.png" id="21_j0wv0"]
+[ext_resource type="Script" uid="uid://d1lyyghuq7ho1" path="res://TEST/TestGenerator/fuse_enter_area.gd" id="21_j3jv3"]
 [ext_resource type="Script" uid="uid://cnrmf1c81r6v3" path="res://TEST/TestGenerator/fuse_int.gd" id="21_sxhvd"]
 [ext_resource type="Texture2D" uid="uid://dcelv0wwyvub2" path="res://TEST/TestGenerator/Generator_guage_Test_Uvrefmap_checkeredmap.jpg" id="22_ku2hl"]
 [ext_resource type="Script" uid="uid://bnbvmifh2ugfj" path="res://TEST/TestGenerator/fuse_mesh.gd" id="23_m4f25"]
@@ -494,6 +495,9 @@ shadow_mesh = SubResource("ArrayMesh_vt1wc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2jwk"]
 size = Vector3(0.599182, 0.516113, 0.387146)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mhk2n"]
+size = Vector3(0.42, 0.565, 0.2983501)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qq3xd"]
 size = Vector3(0.035, 0.074, 0.044)
@@ -4964,8 +4968,26 @@ script = ExtResource("19_34iqw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000246406, 0.241943, -0.00228882)
 shape = SubResource("BoxShape3D_x2jwk")
 
-[node name="FuseRepair" type="Node3D" parent="."]
+[node name="FuseRepair" type="Node3D" parent="." node_paths=PackedStringArray("fuse_enter", "fuse_camera_marker", "generator_manager")]
 script = ExtResource("20_j0wv0")
+fuse_enter = NodePath("Fuse_Enter_Area")
+fuse_camera_marker = NodePath("FuseCameraPosition")
+repair_name = 1
+generator_manager = NodePath("..")
+
+[node name="Fuse_Enter_Area" type="Area3D" parent="FuseRepair"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.504897, 0.93, -0.413)
+collision_layer = 32
+collision_mask = 0
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("21_j3jv3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FuseRepair/Fuse_Enter_Area"]
+transform = Transform3D(1, 6.461498e-14, -1.0338397e-12, 0, 1, -9.986287e-17, 0, -9.986332e-17, 1, -0.008413315, -0.01890397, 0.035696983)
+shape = SubResource("BoxShape3D_mhk2n")
+debug_color = Color(0.99623126, 0, 0.19929612, 0.41960785)
 
 [node name="FuseCameraPosition" type="Marker3D" parent="FuseRepair"]
 transform = Transform3D(-4.371139e-08, 0.05233596, -0.9986295, 0, 0.9986295, 0.05233596, 1, 2.2876774e-09, -4.3651482e-08, -3.013, 0.93, -0.413)

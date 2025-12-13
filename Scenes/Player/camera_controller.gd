@@ -13,6 +13,7 @@ const DEFAULT_HEIGHT : float = 0.5
 @export_category("References")
 @export var player_controller : PlayerController
 @export var component_mouse_capture : MouseCaptureComponent
+@export var camera : Camera3D
 
 @export_category("Camera Settings")
 @export_group("Camera Tilt")
@@ -23,6 +24,23 @@ const DEFAULT_HEIGHT : float = 0.5
 @export var crouch_speed : float = 3.0
 
 var _rotation : Vector3
+
+func _ready() -> void:
+	EventBus.target_camera_transform.connect(_move_camera_to_target)
+	EventBus.camera_to_origin.connect(_move_camera_to_origin)
+
+func _move_camera_to_target(t: Transform3D) -> void:
+	var target_transform = t
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(camera, "global_transform", target_transform, 1.0)
+	
+func _move_camera_to_origin() -> void:
+	var origin_transform : Transform3D = self.global_transform
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(camera, "global_transform", origin_transform, 1.0)
+	
+	await tween.finished # We await the tween finish because then the camera is back where it should be
+	EventBus.camera_state_changed.emit(EventBus.Camera_State.PLAYER)
 
 func _physics_process(_delta: float) -> void:
 	if player_controller.camera_state != EventBus.Camera_State.PLAYER: # Player Controller holds the one truth of state which is why I am referecning here.

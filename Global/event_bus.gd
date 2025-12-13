@@ -32,6 +32,15 @@ signal mouse_mode_changed(mode: int) # Emit like EventBus.mouse_mode_changed.emi
 enum Camera_State {PLAYER, # Default State, Full Movement, Camera Active
 				FROZEN # When in Inventory or other states where Player cannot move. Game NOT Frozen
 } 
+
+enum ControlState { GAMEPLAY = -1, PAUSE, INVENTORY, FUSE_REPAIR, DIALOGUE}
+signal control_state_changed(old_state : ControlState, new_state : ControlState) # Emit when chaning control state
+
+signal request_push_control_state(state : ControlState)
+
+signal request_player_freeze(bool) # False =  Player can move / Normal gameplay; True = disable player movement and camera control
+
+
 @warning_ignore("unused_signal")
 signal camera_state_changed(state : Camera_State) # Emit when you need to change the camera state.
 @warning_ignore("unused_signal")

@@ -6,6 +6,10 @@ extends RepairTaskComponent
 
 # NOTE: For dictionaries, the "key" is unique identifier to search to find a "value"
 # Below the "Key" is fuse_id and the "Value" is the node.
+@export_group("References")
+@export var fuse_enter : Interactable
+@export var fuse_camera_marker : Marker3D
+
 var fuse_areas : Dictionary = {}
 var fuse_meshes : Dictionary = {}
 var fuse_lights : Dictionary = {}
@@ -21,23 +25,22 @@ func _ready() -> void:
 	# Remove collisions
 	for child in get_children():
 		if child is Interactable:
-			fuse_areas[child.fuse_id] = child # Add child to dict
 			child.set_collision_layer_value(6, false) 
 	
 	#super._ready()
 	
-	# TEST
-	#start_flash(FuseTypes.FuseID.S2)
-	#start_flash(FuseTypes.FuseID.S1)
 	prepare_repair()
 
 func prepare_repair() -> void:
 	repair_completed = false
 	set_process(true)
 	
+	fuse_enter.fuse_enter_int.connect(_on_fuse_entered)
+	fuse_enter.set_collision_layer_value(6, true)
+	
 	# Connect all child interact signals, and fill all dictionaries 
 	for child in get_children():
-		if child is Interactable:
+		if child is Interactable and "fuse_id" in child:
 			fuse_areas[child.fuse_id] = child # Add child to dict
 			_collect_parts(child) # Run func to add mesh and lights to dicts
 			child.fuse_interacted.connect(_on_fuse_interacted)
@@ -70,6 +73,8 @@ func prepare_repair() -> void:
 
 func _check_repair_completeion() -> void:
 	if selected_fuses.is_empty(): # Since we remove the fuse_id once selected_fuses is empty then we know we are done
+		fuse_enter.set_collision_layer_value(6, false)
+		# _on_fuse_exited() # We could run this once task is complete to force player out of view
 		repair_task_completed.emit()
 		print("Fuse repair completed")
 	else:
@@ -82,6 +87,22 @@ func _collect_parts(node: Node3D) -> void:
 				fuse_meshes[child.fuse_id] = child
 			if child.part_type == "Light":
 				fuse_lights[child.fuse_id] = child
+
+func _on_fuse_entered() -> void:
+	# Freeze player
+	EventBus.camera_state_changed.emit(EventBus.Camera_State.FROZEN)
+	# Inform camera controller to accept target_transform and tween camera
+	EventBus.target_camera_transform.emit(fuse_camera_marker.global_transform) 
+	# Set Unique State for Inventory
+	InventoryManager.inventory_state = InventoryManager.Inventory_State.FUSE
+	
+	fuse_enter.set_collision_layer_value(6, false)
+
+func _on_fuse_extied() -> void:
+	# Return State to Normal for Inventory
+	InventoryManager.inventory_state = InventoryManager.Inventory_State.NORMAL
+	if repair_completed != true:
+		fuse_enter.set_collision_layer_value(6, true)
 
 func _on_fuse_interacted(fuse_id) -> void:
 	var area : Area3D = fuse_areas[fuse_id]

@@ -64,11 +64,12 @@ shape = SubResource("CapsuleShape3D_767vu")
 shape = SubResource("CapsuleShape3D_5pchx")
 target_position = Vector3(0, 0.5, 0)
 
-[node name="CameraController" type="Node3D" parent="." node_paths=PackedStringArray("player_controller", "component_mouse_capture")]
+[node name="CameraController" type="Node3D" parent="." node_paths=PackedStringArray("player_controller", "component_mouse_capture", "camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_r5hck")
 player_controller = NodePath("..")
 component_mouse_capture = NodePath("../Components/MouseCapture")
+camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 
