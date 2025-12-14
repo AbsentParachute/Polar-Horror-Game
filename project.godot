@@ -23,6 +23,10 @@ ItemDatabase="*res://Global/item_database.gd"
 InventoryManager="*res://Global/inventory_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
+[display]
+
+window/vsync/vsync_mode=2
+
 [dotnet]
 
 project/assembly_name="Polar Horror Game"

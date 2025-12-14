@@ -10,7 +10,11 @@ extends Control
 @onready var name_label: Label = $ItemNameLabel
 @onready var desc_label: Label = $ItemDescriptionLabel
 
+const _expected_state : EventBus.ControlState = EventBus.ControlState.INVENTORY
+
 func _ready() -> void:
+	EventBus.control_state_changed.connect(_on_control_state_changed)
+	
 	_resize_subviewport()
 	resized.connect(_resize_subviewport)
 	
@@ -24,7 +28,21 @@ func _ready() -> void:
 		_refresh_labels()
 	)
 	
-	visible = false # starts hidden
+	self.visible = false # starts hidden
+
+func _input(event: InputEvent) -> void: 
+	if event.is_action_pressed("inventory_toggle"):
+		EventBus.request_append_control_state.emit(_expected_state)
+
+func _on_control_state_changed(old_state : EventBus.ControlState, new_state : EventBus.ControlState) -> void:
+	# Close inventory
+	if old_state == _expected_state:
+		EventBus.request_update_player_freeze.emit()
+		close_inventory()
+	
+	# Open inventory
+	if new_state == _expected_state:
+		open_inventory()
 
 func open_inventory() -> void:
 	visible = true

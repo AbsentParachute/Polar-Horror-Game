@@ -28,20 +28,19 @@ enum MouseMode {VISIBLE, CAPTURED} # Add others as needed
 signal mouse_mode_changed(mode: int) # Emit like EventBus.mouse_mode_changed.emit(EventBus.MouseMode.VISIBILE)
 
 # TEST WIP 12/10/25
-# Player/Camera STATE related events
-enum Camera_State {PLAYER, # Default State, Full Movement, Camera Active
-				FROZEN # When in Inventory or other states where Player cannot move. Game NOT Frozen
-} 
-
+# Control Stack Related related events
 enum ControlState { GAMEPLAY = -1, PAUSE, INVENTORY, FUSE_REPAIR, DIALOGUE}
-signal control_state_changed(old_state : ControlState, new_state : ControlState) # Emit when chaning control state
-
-signal request_push_control_state(state : ControlState)
-
-signal request_player_freeze(bool) # False =  Player can move / Normal gameplay; True = disable player movement and camera control
-
-
 @warning_ignore("unused_signal")
-signal camera_state_changed(state : Camera_State) # Emit when you need to change the camera state.
+signal control_state_changed(old_state : ControlState, new_state : ControlState) # Emit when chaning control state
+@warning_ignore("unused_signal")
+signal request_append_control_state(state : ControlState) # Adds the newly opened state to array
+@warning_ignore("unused_signal")
+signal request_player_freeze(bool) # False =  Player can move / Normal gameplay; True = disable player movement and camera control
+@warning_ignore("unused_signal")
+signal request_update_player_freeze(bool) # Requests ControlStackManager to run the _update_player_freeze() func which will then emit request_player_freeze() to actually freeze or unfreeze
 @warning_ignore("unused_signal")
 signal target_camera_transform(target_global_transforms : Transform3D) # Sends the Transform3D to Player/Camera to tween the camera
+@warning_ignore("unused_signal")
+signal camera_to_origin()
+@warning_ignore("unused_signal")
+signal pause_unpause()

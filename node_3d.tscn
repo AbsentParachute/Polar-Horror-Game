@@ -1,15 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://ovfdfglfrfjv"]
+[gd_scene load_steps=19 format=3 uid="uid://ovfdfglfrfjv"]
 
 [ext_resource type="PackedScene" uid="uid://8uycgvno1ol6" path="res://Scenes/Player/player_controller.tscn" id="2_a0tk4"]
 [ext_resource type="PackedScene" uid="uid://cbtbgxtu83f8k" path="res://Scenes/Main/Exposure Area/exposure_area.tscn" id="2_noarx"]
-[ext_resource type="PackedScene" uid="uid://dydlk8um0kt5u" path="res://TEST/TestItems/test_inv.tscn" id="5_jka67"]
 [ext_resource type="PackedScene" uid="uid://o55mv3or0028" path="res://TEST/TestGenerator/Generator_Battery_Test.tscn" id="7_6iypd"]
+[ext_resource type="PackedScene" uid="uid://cf7dr3m5nj26o" path="res://UI/pause_menu.tscn" id="8_cdqbm"]
 [ext_resource type="PackedScene" uid="uid://djnlqrq2skdec" path="res://TEST/TestGenerator/Generator_Can_Test.tscn" id="8_tereu"]
 [ext_resource type="PackedScene" uid="uid://damk1mgwus72r" path="res://TEST/TestGenerator/Generator_Filter_Test.tscn" id="9_cdqbm"]
 [ext_resource type="PackedScene" uid="uid://f01hjqah1sfh" path="res://TEST/TestGenerator/Generator_Test.tscn" id="10_imku0"]
 [ext_resource type="Script" uid="uid://bnnhvum3xb4hu" path="res://focus_test.gd" id="11_cdqbm"]
+[ext_resource type="Script" uid="uid://v5ywph4nx76a" path="res://UI/control_stack_manager.gd" id="11_imku0"]
 [ext_resource type="PackedScene" uid="uid://bld56i5qxosly" path="res://TEST/TestGenerator/Coolant_Can_Test.tscn" id="11_tereu"]
 [ext_resource type="PackedScene" uid="uid://dm02kaihng28o" path="res://TEST/TestGenerator/Generator_Battery_Full_Test.tscn" id="12_cdqbm"]
+[ext_resource type="PackedScene" uid="uid://bp8rfklhar2f4" path="res://UI/inventory_overlay.tscn" id="12_imku0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0tk4"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -111,16 +113,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86967, 0.0834555, 11.6345)
 [node name="Generator_Battery_Test3" parent="WorldObjects" instance=ExtResource("12_cdqbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75602, 0.0834555, 11.0525)
 
-[node name="Node" parent="." instance=ExtResource("5_jka67")]
-
 [node name="PlayerController" parent="." instance=ExtResource("2_a0tk4")]
 
-[node name="Unfocus Fix" type="Node" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ControlStackManager" type="Node" parent="UI"]
+process_mode = 3
+script = ExtResource("11_imku0")
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("8_cdqbm")]
+
+[node name="InventoryRoot" parent="UI" instance=ExtResource("12_imku0")]
+
+[node name="InventoryCam" parent="UI/InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Node" type="Node" parent="."]
 script = ExtResource("11_cdqbm")
 
 [editable path="ExposureArea"]
 [editable path="WorldObjects/Generator_Can_Test"]
 [editable path="WorldObjects/Generator_Test"]
-[editable path="Node"]
-[editable path="Node/InventoryOverlay"]
 [editable path="PlayerController"]
+[editable path="UI/InventoryRoot"]

@@ -2,6 +2,5 @@ extends Interactable
 
 signal fuse_enter_int() 
 
-@warning_ignore("unused_parameter")
-func interactable(interactor) -> void:
+func interact(interactor) -> void:
 	fuse_enter_int.emit()

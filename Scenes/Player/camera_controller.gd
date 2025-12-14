@@ -32,18 +32,19 @@ func _ready() -> void:
 func _move_camera_to_target(t: Transform3D) -> void:
 	var target_transform = t
 	var tween : Tween = get_tree().create_tween()
-	tween.tween_property(camera, "global_transform", target_transform, 1.0)
+	tween.tween_property(camera, "global_transform", target_transform, 0.5)
 	
 func _move_camera_to_origin() -> void:
 	var origin_transform : Transform3D = self.global_transform
 	var tween : Tween = get_tree().create_tween()
-	tween.tween_property(camera, "global_transform", origin_transform, 1.0)
+	tween.tween_property(camera, "global_transform", origin_transform, 0.5)
 	
 	await tween.finished # We await the tween finish because then the camera is back where it should be
-	EventBus.camera_state_changed.emit(EventBus.Camera_State.PLAYER)
+	# TEST
+	EventBus.request_update_player_freeze.emit()
 
 func _physics_process(_delta: float) -> void:
-	if player_controller.camera_state != EventBus.Camera_State.PLAYER: # Player Controller holds the one truth of state which is why I am referecning here.
+	if player_controller.player_freeze == true: # Player Controller holds the one truth of state which is why I am referecning here.
 		return
 	
 	update_camera_rotation(component_mouse_capture._mouse_input)

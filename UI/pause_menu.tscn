@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf7dr3m5nj26o"]
+
+[ext_resource type="Script" uid="uid://d1f8g3ufqg6jp" path="res://UI/pause_menu.gd" id="1_jfm1e"]
+[ext_resource type="Shader" uid="uid://bdkp3licxlsfm" path="res://UI/pause_menu_blur.gdshader" id="1_ltd3m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ltd3m"]
+shader = ExtResource("1_ltd3m")
+shader_parameter/blur_lod = 1.7399999611075199
+shader_parameter/darkness = 0.35
+shader_parameter/alpha = 1.0
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jfm1e")
+
+[node name="BackgroundBlur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ltd3m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -324.0
+offset_right = 250.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.99289644)
+pivot_offset = Vector2(2.655, 0)
+color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.00003
+offset_top = -13.292877
+offset_right = 34.99997
+offset_bottom = 17.707123
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="PausedLabel" type="Label" parent="Background/VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Background/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="Background/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="Background/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit"

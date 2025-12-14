@@ -1,4 +1,4 @@
-[gd_scene load_steps=369 format=4 uid="uid://f01hjqah1sfh"]
+[gd_scene load_steps=366 format=4 uid="uid://f01hjqah1sfh"]
 
 [ext_resource type="Material" uid="uid://fvs8lemq51k2" path="res://TEST/TestGenerator/Battery_Test.tres" id="1_fe2i3"]
 [ext_resource type="Script" uid="uid://b3vksc5ptdca2" path="res://TEST/TestGenerator/generator_manager.gd" id="1_sbrfv"]
@@ -28,19 +28,6 @@
 [ext_resource type="Script" uid="uid://bnbvmifh2ugfj" path="res://TEST/TestGenerator/fuse_mesh.gd" id="23_m4f25"]
 [ext_resource type="Material" uid="uid://bt1cdvmtxbsv2" path="res://TEST/TestGenerator/fuse_bad_light.tres" id="25_m4f25"]
 [ext_resource type="Texture2D" uid="uid://h73e1ke6um4a" path="res://TEST/TestGenerator/Generator_Replace_Fuse_Board.png" id="28_u8n76"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m4f25"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_j3jv3"]
-sky_material = SubResource("ProceduralSkyMaterial_m4f25")
-
-[sub_resource type="Environment" id="Environment_u8n76"]
-background_mode = 2
-sky = SubResource("Sky_j3jv3")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iq3d8"]
 
@@ -4741,14 +4728,6 @@ shadow_mesh = SubResource("ArrayMesh_3j0dt")
 [node name="GeneratorManager" type="Node3D"]
 script = ExtResource("1_sbrfv")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u8n76")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
-directional_shadow_max_distance = 1.0
-
 [node name="OilRepair" type="Node3D" parent="." node_paths=PackedStringArray("oil_tank_cap", "oil_tank", "oil_fill", "generator_manager")]
 script = ExtResource("2_uanwp")
 oil_tank_cap = NodePath("Oil_Tank_Cap")
@@ -4991,9 +4970,6 @@ debug_color = Color(0.99623126, 0, 0.19929612, 0.41960785)
 
 [node name="FuseCameraPosition" type="Marker3D" parent="FuseRepair"]
 transform = Transform3D(-4.371139e-08, 0.05233596, -0.9986295, 0, 0.9986295, 0.05233596, 1, 2.2876774e-09, -4.3651482e-08, -3.013, 0.93, -0.413)
-
-[node name="Fuse_Camera" type="Camera3D" parent="FuseRepair/FuseCameraPosition"]
-size = 0.581
 
 [node name="Fuse_S_Int1" type="Area3D" parent="FuseRepair"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5112245, 1.1410053, -0.58651817)

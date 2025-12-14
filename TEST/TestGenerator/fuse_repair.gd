@@ -2,6 +2,7 @@ extends RepairTaskComponent
 
 # TODO:
 # DONE - Figure out how to allow mouse to "interact" with fuses. Mouse needs to be a ray and function like the current interaction. 
+# DONE - Connected Fuse_repair with ControlStackManager to allow enter and exiting.
 # Fine tune collision shapes for the weird camera angle
 
 # NOTE: For dictionaries, the "key" is unique identifier to search to find a "value"
@@ -20,6 +21,7 @@ var selected_fuses : Array[FuseTypes.FuseID] = [] # Fuses that are active and ne
 var _flash_tweens : Dictionary = {} # Stores fuse_id to refer back to specific tween to kill it
 
 const FUSE_GOOD : StandardMaterial3D = preload("uid://cpyf4f3su2101")
+const _desired_state : EventBus.ControlState = EventBus.ControlState.FUSE_REPAIR
 
 func _ready() -> void:
 	# Remove collisions
@@ -34,6 +36,8 @@ func _ready() -> void:
 func prepare_repair() -> void:
 	repair_completed = false
 	set_process(true)
+	
+	EventBus.control_state_changed.connect(_on_control_state_changed)
 	
 	fuse_enter.fuse_enter_int.connect(_on_fuse_entered)
 	fuse_enter.set_collision_layer_value(6, true)
@@ -89,16 +93,25 @@ func _collect_parts(node: Node3D) -> void:
 				fuse_lights[child.fuse_id] = child
 
 func _on_fuse_entered() -> void:
-	# Freeze player
-	EventBus.camera_state_changed.emit(EventBus.Camera_State.FROZEN)
-	# Inform camera controller to accept target_transform and tween camera
-	EventBus.target_camera_transform.emit(fuse_camera_marker.global_transform) 
+	# Append state to array
+	EventBus.request_append_control_state.emit(_desired_state)
 	# Set Unique State for Inventory
 	InventoryManager.inventory_state = InventoryManager.Inventory_State.FUSE
-	
 	fuse_enter.set_collision_layer_value(6, false)
 
-func _on_fuse_extied() -> void:
+func _on_control_state_changed(old_state : EventBus.ControlState, new_state : EventBus.ControlState) -> void:
+	if old_state == EventBus.ControlState.FUSE_REPAIR and new_state == EventBus.ControlState.GAMEPLAY:
+		_on_fuse_exited()
+	
+	if old_state == EventBus.ControlState.GAMEPLAY and new_state == EventBus.ControlState.FUSE_REPAIR: # Only run this when entering fuse_repair from gameplay
+		# Inform camera controller to accept target_transform and tween camera
+		EventBus.target_camera_transform.emit(fuse_camera_marker.global_transform)
+
+func _on_fuse_exited() -> void:
+	# Emit signal to transition camera back to origin
+	EventBus.camera_to_origin.emit()
+	# Unfreeze request handled by Camera_Controller
+	
 	# Return State to Normal for Inventory
 	InventoryManager.inventory_state = InventoryManager.Inventory_State.NORMAL
 	if repair_completed != true:

@@ -23,7 +23,7 @@ extends CharacterBody3D
 @export var jump_velocity : float = 5.
 
 ## TEST Player Camera WIP 12/10/25
-var camera_state : EventBus.Camera_State = EventBus.Camera_State.PLAYER # Default State
+var player_freeze : bool = false # Default State
 ## TEST
 
 var _input_dir : Vector2 = Vector2.ZERO
@@ -33,15 +33,15 @@ var crouch_modifier : float = 0.0
 var speed : float = 3.0
 
 func _ready() -> void:
-	EventBus.camera_state_changed.connect(_on_camera_state_changed)
+	EventBus.request_player_freeze.connect(_on_request_player_freeze)
 
 # TEST
-func _on_camera_state_changed(state: EventBus.Camera_State):
-	camera_state = state
+func _on_request_player_freeze(b: bool):
+	player_freeze = b
 
 func _physics_process(delta: float) -> void:
 	
-	if camera_state != EventBus.Camera_State.PLAYER:
+	if player_freeze == true:
 		return
 	
 	var grounded = is_on_floor()

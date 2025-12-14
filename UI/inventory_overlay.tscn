@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp8rfklhar2f4"]
+[gd_scene load_steps=11 format=3 uid="uid://bp8rfklhar2f4"]
 
 [ext_resource type="Script" uid="uid://b6d6tkf5yhh1e" path="res://UI/inventory_overlay.gd" id="1_d5tdc"]
 [ext_resource type="Script" uid="uid://rqytcsvx8q33" path="res://UI/inventory_carousel.gd" id="1_gysbe"]
+[ext_resource type="Script" uid="uid://crtxrvwtrgr0" path="res://TEST/TestItems/test_inv_controller.gd" id="2_y4oli"]
 
 [sub_resource type="Gradient" id="Gradient_d5tdc"]
 
@@ -16,10 +17,20 @@ albedo_texture = SubResource("GradientTexture1D_y4oli")
 [sub_resource type="PlaneMesh" id="PlaneMesh_d5tdc"]
 material = SubResource("StandardMaterial3D_tdelr")
 
-[node name="InventoryOverlay" type="CanvasLayer"]
-physics_interpolation_mode = 2
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y4oli"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[node name="InventoryRoot" type="Control" parent="."]
+[sub_resource type="Sky" id="Sky_tdelr"]
+sky_material = SubResource("ProceduralSkyMaterial_y4oli")
+
+[sub_resource type="Environment" id="Environment_yog6a"]
+background_mode = 2
+sky = SubResource("Sky_tdelr")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="InventoryRoot" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +40,7 @@ grow_vertical = 2
 script = ExtResource("1_d5tdc")
 metadata/_edit_use_anchors_ = true
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="InventoryRoot"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,28 +48,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+script = ExtResource("2_y4oli")
 metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="InventoryRoot/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="InventoryCarousel" type="Node3D" parent="InventoryRoot/SubViewportContainer/SubViewport"]
+[node name="InventoryCarousel" type="Node3D" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("1_gysbe")
+x_offset = 2.5
+neighbor_z = -0.5
+selected_z = 0.65
 
-[node name="InventoryCam" type="Camera3D" parent="InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel"]
+[node name="InventoryCam" type="Camera3D" parent="SubViewportContainer/SubViewport/InventoryCarousel"]
 physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
+current = true
 
-[node name="ItemsRoot" type="Node3D" parent="InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel"]
+[node name="ItemsRoot" type="Node3D" parent="SubViewportContainer/SubViewport/InventoryCarousel"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="InventoryRoot/SubViewportContainer/SubViewport/InventoryCarousel"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/InventoryCarousel"]
 transform = Transform3D(10.963855, 0, 0, 0, -2.62268e-07, -6, 0, 6, -2.62268e-07, 0, 0, -1.20282)
 mesh = SubResource("PlaneMesh_d5tdc")
 skeleton = NodePath("../..")
 
-[node name="LeftButton" type="Button" parent="InventoryRoot"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_yog6a")
+
+[node name="LeftButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -68,7 +93,7 @@ offset_right = 147.0
 grow_vertical = 0
 text = "Left"
 
-[node name="RightButton" type="Button" parent="InventoryRoot"]
+[node name="RightButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -82,7 +107,7 @@ grow_vertical = 0
 text = "Right
 "
 
-[node name="ItemNameLabel" type="Label" parent="InventoryRoot"]
+[node name="ItemNameLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -96,7 +121,7 @@ text = "Item Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ItemDescriptionLabel" type="Label" parent="InventoryRoot"]
+[node name="ItemDescriptionLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
